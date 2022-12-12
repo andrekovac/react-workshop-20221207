@@ -8,7 +8,7 @@ export const Counter = () => {
     console.log({ count });
   };
 
-  console.log("render");
+  // console.log("render");
 
   return (
     <div
