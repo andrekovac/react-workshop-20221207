@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Book } from "../../domain/book";
+import { Hideable } from "../Hideable";
 
 interface BookListItemProps {
   book: Book;
@@ -19,6 +20,7 @@ export const BookListItem = ({ book }: BookListItemProps) => {
         {likes >= 5 && "⭐️"} {book.title} {isFree && "💰"}
       </h2>
       <h3>{book.subtitle}</h3>
+      <Hideable>{book.abstract}</Hideable>
       <div>by {book.author}</div>
       <button onClick={increaseLikeCount}>
         &#128079; {likes > 0 && `(${likes})`}
