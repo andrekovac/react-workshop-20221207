@@ -5,12 +5,10 @@ import { BookList } from "./components/BookList/BookList";
 import { Counter } from "./components/Counter";
 import { exampleBooks } from "./domain/book";
 
-const App = () => {
+const useBook = () => {
   const [result, setResult] = useState<{ title: string } | undefined>(
     undefined
   );
-
-  console.log("render");
 
   // Daten von einer API beziehen
   const fetchBookAsync = async () => {
@@ -28,11 +26,19 @@ const App = () => {
     fetchBookAsync();
   }, []);
 
+  return result;
+};
+
+const App = () => {
+  const [show, setShow] = useState(true);
+  const book = useBook();
+
   return (
     <div className="App">
-      Titel: {result?.title}
+      Titel: {book?.title}
       <AppHeader />
-      <Counter />
+      {show && <Counter />}
+      <button onClick={() => setShow(!show)}>Toggle show</button>
       <BookList books={exampleBooks} />
     </div>
   );
